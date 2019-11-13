@@ -2,12 +2,31 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mathOps = require("./math_operations")
 const animals = require("./animals")
+const mongoose = require('mongoose');
+
 const app = express();
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+
+//------------------database-----------------------------
+const URI = 'mongodb://localhost/data_base_rest_dev'
+
+mongoose.connect(URI,{
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+});
+
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+    console.log('base de datos conectada');
+});
+//---------------------------------------------------
+
 app.use('/animals', animals)
 
 app.listen(3000, () => {
