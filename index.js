@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 //------------------database-----------------------------
-const URI = 'mongodb://localhost/data_base_rest_dev'
+const URI = 'mongodb://mongo:27017/data_base_rest_dev'
 
 mongoose.connect(URI,{
     useNewUrlParser: true,
